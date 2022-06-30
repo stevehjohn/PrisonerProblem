@@ -61,7 +61,7 @@ public static class PrisonerProblem
 
     private static int SearchBoxes()
     {
-        var maxLoopLength = 0;
+        var maxLoopLength = 1;
 
         for (var i = 0; i < Prisoners; i++)
         {
