@@ -18,7 +18,7 @@ public static class PrisonerProblem
         {
             var length = Iteration();
 
-            if (length < Prisoners / 2)
+            if (length <= Prisoners / 2)
             {
                 wins++;
             }
