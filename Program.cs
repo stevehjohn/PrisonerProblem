@@ -6,6 +6,8 @@ public static class PrisonerProblem
 
     private const int Iterations = 10000;
 
+    private static readonly Random Random = new Random();
+
     public static void Solve()
     {
         var wins = 0;
@@ -27,8 +29,6 @@ public static class PrisonerProblem
     {
         var boxes = new int[Prisoners];
 
-        var random = new Random();
-
         var numbers = new List<int>(Prisoners);
 
         for (var i = 0; i < Prisoners; i++)
@@ -40,7 +40,7 @@ public static class PrisonerProblem
 
         while (numbers.Count > 0)
         {
-            var index = random.Next(numbers.Count);
+            var index = Random.Next(numbers.Count);
 
             boxes[box] = numbers[index];
 
