@@ -4,9 +4,11 @@ public static class PrisonerProblem
 {
     private const int Prisoners = 100;
 
-    private const int Iterations = 10000;
+    private const int Iterations = 10_000;
 
-    private static readonly Random Random = new Random();
+    private static readonly Random Random = new();
+
+    private static int[] _boxes;
 
     public static void Solve()
     {
@@ -27,7 +29,14 @@ public static class PrisonerProblem
 
     private static int Iteration()
     {
-        var boxes = new int[Prisoners];
+        InitialiseBoxes();
+
+        return SearchBoxes();
+    }
+
+    private static void InitialiseBoxes()
+    {
+        _boxes = new int[Prisoners];
 
         var numbers = new List<int>(Prisoners);
 
@@ -42,24 +51,27 @@ public static class PrisonerProblem
         {
             var index = Random.Next(numbers.Count);
 
-            boxes[box] = numbers[index];
+            _boxes[box] = numbers[index];
 
             numbers.RemoveAt(index);
 
             box++;
         }
+    }
 
+    private static int SearchBoxes()
+    {
         var maxLoopLength = 0;
 
         for (var i = 0; i < Prisoners; i++)
         {
-            box = i;
+            var box = i;
 
             var length = 1;
 
             while (true)
             {
-                box = boxes[box];
+                box = _boxes[box];
 
                 if (box == i)
                 {
